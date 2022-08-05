@@ -7,35 +7,9 @@ TaskHandle_t Task2;
 
 const int redred = 2;
 const int ledgreen = 4;
-void Task1kodu( void * pvParameters ){
-  Serial.print("Task1'in Çalıştığı Çekirdek: ");
-  Serial.println(xPortGetCoreID());
+void Task2kodu( void * pvParameters );  //Function Declaration
+void Task1kodu( void * pvParameters );  //Function Declaration
 
-  for(;;){ //sonsuz döner
-    digitalWrite(redred, HIGH);
-    delay(2000);
-    digitalWrite(redred, LOW);
-    delay(500);
-    Serial.println("ok");
-
-
-  } 
-}
-
-//Task2kodu: Yeşil ledi 300 ms'de bir yakıp söndüreceğiz
-void Task2kodu( void * pvParameters ){
-  Serial.print("Task2'nin Çalıştığı Çekirdek: ");
-  Serial.println(xPortGetCoreID());
-
-  for(;;){ //sonsuz döner
-    digitalWrite(ledgreen, HIGH);
-    delay(300);
-    digitalWrite(ledgreen, LOW);
-    delay(300);
-        Serial.println("no");
-
-  }
-}
 void setup() {
   Serial.begin(9600); 
   pinMode(redred, OUTPUT);
@@ -65,7 +39,36 @@ void setup() {
 }
 
 
+void Task1kodu( void * pvParameters ){
+  Serial.print("Task1'in Çalıştığı Çekirdek: ");
+  Serial.println(xPortGetCoreID());
 
+  for(;;){ //sonsuz döner
+    digitalWrite(redred, HIGH);
+    delay(2000);
+    digitalWrite(redred, LOW);
+    delay(500);
+    Serial.println("ok");
+
+
+  } 
+}
+
+//Task2kodu: Yeşil ledi 300 ms'de bir yakıp söndüreceğiz
+void Task2kodu( void * pvParameters ){
+  Serial.print("Task2'nin Çalıştığı Çekirdek: ");
+  Serial.println(xPortGetCoreID());
+
+  for(;;){ //sonsuz döner
+    digitalWrite(ledgreen, HIGH);
+    delay(300);
+    digitalWrite(ledgreen, LOW);
+    delay(300);
+        Serial.println("no");
+
+  }
+}
 void loop() {
-  
+  Serial.println("burası loop döngüsü");
+  delay(5000);
 }
